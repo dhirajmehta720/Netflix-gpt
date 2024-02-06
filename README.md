@@ -2,6 +2,9 @@
 
 - Vite done
 - Configures TailwindCss
+- Header
+- Login Form
+- Sign
 
 # Features
 
