@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "./Header";
+import { checkValidData } from "../utils/validate";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [isSignin, setisSignin] = useState(true);
   const toggleSignin = () => {
     setisSignin(!isSignin);
   };
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef(null);
+  const password = useRef(null);
+
+  const handleButtonClick = () => {
+    //Validate the Form
+    const msg = checkValidData(email.current.value, password.current.value);
+    setErrorMessage(msg);
+  };
+
   return (
     <div>
       <Header />
@@ -19,7 +32,7 @@ const Login = () => {
         <div className="font-bold text-4xl mb-[20px]">
           {isSignin ? "Sign In" : "Sign Up"}
         </div>
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           {!isSignin && (
             <input
               type="text"
@@ -28,21 +41,25 @@ const Login = () => {
             />
           )}
           <input
+            ref={email}
             type="text"
             placeholder="Email Address"
             className="w-full py-3 px-3 mb-5 bg-slate-800 rounded-md"
           />
           <input
+            ref={password}
             type="password"
             placeholder="Password"
             className="w-full py-3 px-3 mb-4 bg-slate-800 rounded-md"
           />
-          <button className=" text-white rounded-md bg-opacity-100 cursor-pointer mb-6 w-full py-2 text-center bg-red-600 font-semibold">
+          <p className="text-red-600 font-semibold pb-2">{errorMessage}</p>
+          <button
+            onClick={handleButtonClick}
+            className=" text-white rounded-md bg-opacity-100 cursor-pointer mb-6 w-full py-2 text-center bg-red-600 font-semibold"
+          >
             {isSignin ? "Sign In" : "Sign Up"}
           </button>
-          <a href="/" className="mx-[80px] cursor-pointer">
-            Forgot Password?
-          </a>
+          <Link to={"/"} className="mx-[80px] cursor-pointer">Forgot Password?</Link>
         </form>
         <p
           className="text-white mt-8 mx-auto cursor-pointer"

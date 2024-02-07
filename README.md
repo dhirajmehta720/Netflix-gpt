@@ -4,7 +4,9 @@
 - Configures TailwindCss
 - Header
 - Login Form
-- Sign
+- Signin/signup form
+- Form Validation
+- useRef hook
 
 # Features
 
