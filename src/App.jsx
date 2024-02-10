@@ -1,7 +1,13 @@
 import Body from "./components/body";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
 const App = () => {
-  return <Body/>;
+  return (
+    <Provider store={appStore}>
+      <Body />
+    </Provider>
+  );
 };
 
 export default App;

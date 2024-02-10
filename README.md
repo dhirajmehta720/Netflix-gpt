@@ -8,7 +8,9 @@
 - Form Validation
 - useRef hook
 - Firebase Setup
-- Create Signup user account on firebase
+- Created Signup user account on firebase
+- Created reduxStore using userSlice
+- implemented signout
 
 # Features
 
